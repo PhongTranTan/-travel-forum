@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="vi">
     <head>
-        <title>Sign up</title>
+        <title>@yield('title')</title>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
@@ -42,32 +42,18 @@
         <link href="/assets/css/styles.css" rel="stylesheet">
     </head>
     <body>
-        <main class="wrapper mainPage">
-            <section class="p-fullscreen" style="background-image:url(&quot;/images/travel.png&quot;)">
-                <div class="container">
-                    <div class="form-content form-content-floating wow fadeIn">
-                        <form class="form form-validate" action="#" id="frmSignUp">
-                            <div class="form_title">Create a Listings free account</div>
-                            <div class="form-list">
-                                <input type="email" name="email" placeholder="Email" required>
-                            </div>
-                            <div class="form-list">
-                                <input id="password" type="password" name="password" placeholder="Password(5 - 20 characters)" required>
-                            </div>
-                            <div class="form-list">
-                                <input type="password" name="confirmPassword" placeholder="Confirm password" required>
-                            </div>
-                            <div class="group-btn">
-                                <button class="btn-custom" type="submit">Continue</button>
-                            </div>
-                            <p class="tip signup-tip"><span>Already have an account? &nbsp;</span><a href="/">Back to Home</a></p>
-                        </form>
-                    </div>
-                </div>
-            </section>
+        @include('frontend.include.header')
+        <main class="wrapper">
+            @yield('content')     
         </main>
-        <!-- End Main Content-->
-        <script src="/assets/js/library.js"></script>
-        <script async src="/assets/js/pages.js"></script>
+        @include('frontend.include.footer')
+        
+        @if(isset($isHome))
+            <script src="/assets/js/library_homepage.js"></script>
+            <script async src="/assets/js/main.js"></script>
+        @else
+            <script src="/assets/js/library.js"></script>
+            <script async src="/assets/js/pages.js"></script>
+        @endif
     </body>
 </html>

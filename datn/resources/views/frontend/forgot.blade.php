@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="vi">
     <head>
-        <title>Sign up</title>
+        <title>Reset Password</title>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
@@ -46,28 +46,49 @@
             <section class="p-fullscreen" style="background-image:url(&quot;/images/travel.png&quot;)">
                 <div class="container">
                     <div class="form-content form-content-floating wow fadeIn">
-                        <form class="form form-validate" action="#" id="frmSignUp">
-                            <div class="form_title">Create a Listings free account</div>
+                        <form class="form form-validate" action="#" id="frmForgetPassword">
+                            <div class="form_title">Reset your password</div>
+                            <p>Just enter your email address, and we will send you a link to reset your password.</p>
                             <div class="form-list">
                                 <input type="email" name="email" placeholder="Email" required>
-                            </div>
-                            <div class="form-list">
-                                <input id="password" type="password" name="password" placeholder="Password(5 - 20 characters)" required>
-                            </div>
-                            <div class="form-list">
-                                <input type="password" name="confirmPassword" placeholder="Confirm password" required>
                             </div>
                             <div class="group-btn">
                                 <button class="btn-custom" type="submit">Continue</button>
                             </div>
-                            <p class="tip signup-tip"><span>Already have an account? &nbsp;</span><a href="/">Back to Home</a></p>
+                            <p class="tip signup-tip"><a href="/">Back to Home</a></p>
                         </form>
                     </div>
                 </div>
             </section>
         </main>
         <!-- End Main Content-->
+        <div class="modal fade" id="modalSuccessSent" tabindex="-1" role="dialog" aria-labelledby="modalSuccessSentLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Successful !</h5>
+                    </div>
+                    <div class="modal-body">
+                        <p>The reset password has sent to your mail</p>
+                    </div>
+                    <div class="modal-footer"> 
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <script src="/assets/js/library.js"></script>
         <script async src="/assets/js/pages.js"></script>
+        <script>
+            $('#frmForgetPassword').on('submit',(e)=>{
+                e.preventDefault();
+                const $form = $(e.currentTarget);
+                if (!$form.valid()) return;
+                $('#modalSuccessSent').modal('show');
+            });
+            $('#modalSuccessSent').on('hidden.bs.modal', ()=>{
+                window.location.href='/'
+            });
+        </script>
     </body>
 </html>

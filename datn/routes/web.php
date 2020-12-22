@@ -13,6 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('frontend.index');
-});
+Route::get('/', 'BaseController@index')->name("page.home");
+Route::get('about', 'BaseController@about')->name("page.about");
+Route::get('profile', 'BaseController@profile')->name("page.profile");
+Route::post('search', 'BaseController@search')->name("page.search");
+Route::get('signup', 'BaseController@signup')->name("page.signup");
+Route::get('forgot', 'BaseController@forgot')->name("page.forgot");
+Route::get('detail', 'BaseController@detail')->name("page.detail");
+
