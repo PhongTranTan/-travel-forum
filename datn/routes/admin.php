@@ -1,8 +1,19 @@
 <?php
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;
 
-Route::get('admin', 'DashboardController@index')->name("admin.dashboard.index");
-// Route::group(["prefix" => "admin"], function () {
-//     Route::get('/', 'DashboardController@index')->name("admin.dashboard.index");
-// });
+Route::group([
+        "prefix" => "admin",
+        'as' => 'admin.',
+    ], function () {
+    Route::get('/', 'DashboardController@index')
+        ->name("dashboard.index");
+
+    //-- Categories
+    Route::group([
+        "prefix" => "categories",
+        'as' => 'category.',
+    ], function () {
+        Route::get('/', 'CategoryController@index')
+            ->name("index");
+    });
+});
