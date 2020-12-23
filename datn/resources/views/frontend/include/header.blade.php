@@ -6,7 +6,7 @@
             <div class="navbar-collapse justify-content-end collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="/about.html">About</a>
+                        <a class="nav-link" href="{{ route('page.about') }}">About</a>
                     </li>
                     <li class="nav-item"><a class="nav-link" href="#modalLogin" data-toggle="modal">Login</a></li>
                     <li class="nav-item dropdown">

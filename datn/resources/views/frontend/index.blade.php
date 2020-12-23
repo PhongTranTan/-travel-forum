@@ -1,5 +1,9 @@
+@section('title')
+Du lịch
+@endsection
 @extends('frontend.master')
 @section('content')
+    <!-- search -->
     <section class="s-bannerHome d-flex align-items-center">
         <div class="container">
             <div class="d-flex justify-content-center">
@@ -11,15 +15,27 @@
                 </div>
             </div>
             <div class="d-flex justify-content-center">
-                <form class="form-wrap mt-4" action="/search-result.html">
+                <form class="form-wrap mt-4" action="{{ route('page.search') }}">
                     <div class="btn-group" role="group" aria-label="Basic example">
-                        <input class="wow fadeInLeft form-control" type="text" placeholder="What are your looking for?" data-wow-duration="1s" data-wow-delay="0.7">
-                        <button class="wow fadeInRight btn-form" type="submit" data-wow-duration="1s" data-wow-delay="0.7"><span class="icon-magnifier search-icon"></span>SEARCH<i class="pe-7s-angle-right"></i></button>
+                        <input class="wow fadeInLeft form-control" 
+                            type="text" 
+                            placeholder="What are your looking for?"
+                            name="key_word"
+                            data-wow-duration="1s" data-wow-delay="0.7"
+                        />
+                        <button class="wow fadeInRight btn-form" type="submit" data-wow-duration="1s" data-wow-delay="0.7">
+                            <span class="icon-magnifier search-icon"></span>
+                            SEARCH
+                            <i class="pe-7s-angle-right"></i>
+                        </button>
                     </div>
                 </form>
             </div>
         </div>
     </section>
+    <!-- end search -->
+
+    <!-- show listing by categories -->
     <section class="s-section_main">
         <div class="container">
             <div class="titleSection">
@@ -87,6 +103,9 @@
             </div>
         </div>
     </section>
+    <!-- end show listing by categories -->
+    
+    <!-- featured places -->
     <section class="s-section_featured">
         <div class="container">
             <div class="titleSection">
@@ -226,6 +245,9 @@
             <div class="featuredPanel_viewMore wow zoomIn"><a class="btn-custom" href="#">Xem thêm</a></div>
         </div>
     </section>
+    <!-- end featured places -->
+
+    <!-- categories -->
     <section class="s-section_category">
         <div class="container">
             <div class="titleSection">
@@ -292,4 +314,5 @@
             </div>
         </div>
     </section>
+    <!-- end categories -->
 @endsection

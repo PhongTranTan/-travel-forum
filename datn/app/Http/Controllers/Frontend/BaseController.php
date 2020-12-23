@@ -33,12 +33,18 @@ class BaseController extends Controller
 
     public function signup()
     {
-        return view('frontend.signup');
+        $isMainPage = 1;
+        return view('frontend.signup', compact(
+            'isMainPage'
+        ));
     }
 
     public function forgot()
     {
-        return view('frontend.forgot');
+        $isMainPage = 1;
+        return view('frontend.forgot', compact(
+            'isMainPage'
+        ));
     }
 
     public function detail()
