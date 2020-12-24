@@ -6,7 +6,7 @@ Dashboard
 <div class="mdl-grid mdl-grid--no-spacing dashboard">
     <div class="mdl-grid mdl-cell mdl-cell--9-col-desktop mdl-cell--12-col-tablet mdl-cell--4-col-phone mdl-cell--top">
         <!-- trending widget-->
-        <div class="mdl-cell mdl-cell--4-col-desktop mdl-cell--6-col-tablet mdl-cell--2-col-phone">
+        <div class="mdl-cell mdl-cell--8-col-desktop mdl-cell--8-col-tablet mdl-cell--2-col-phone">
             <div class="mdl-card mdl-shadow--2dp trending">
                 <div class="mdl-card__title">
                     <h2 class="mdl-card__title-text">Total</h2>
