@@ -4,12 +4,13 @@ Categories
 @extends('admin.master')
 @section('content')
 <div class="mdl-cell mdl-cell--12-col-desktop">
-    <a href="{{ route('admin.category.create') }}" class="button--colored-teal mdl-button mdl-button--raised mdl-js-button mdl-js-ripple-effect">
-        <i _ngcontent-serverapp-c93="" class="material-icons">create</i> 
+    <a href="{{ route('admin.category.create') }}"
+        class="button--colored-teal mdl-button mdl-button--raised mdl-js-button mdl-js-ripple-effect">
+        <i _ngcontent-serverapp-c93="" class="material-icons">create</i>
         Create <span class="mdl-button__ripple-container">
-            <span class="mdl-ripple is-animating" 
-            style="width: 262.161px; height: 262.161px; transform: translate(-50%, -50%) translate(36px, 21px);">
-        </span></span>
+            <span class="mdl-ripple is-animating"
+                style="width: 262.161px; height: 262.161px; transform: translate(-50%, -50%) translate(36px, 21px);">
+            </span></span>
     </a>
 </div>
 <div class="mdl-grid ui-tables">
@@ -24,7 +25,6 @@ Categories
                         <tr>
                             <th class="mdl-data-table__cell--non-numeric" style="width:30px">No.</th>
                             <th class="mdl-data-table__cell--non-numeric">Name</th>
-                            <th class="mdl-data-table__cell--non-numeric">Icon</th>
                             <th class="mdl-data-table__cell--non-numeric">Active</th>
                             <th class="mdl-data-table__cell--non-numeric">Action</th>
                         </tr>
@@ -35,10 +35,22 @@ Categories
                         <tr>
                             <td class="mdl-data-table__cell--non-numeric">{{ $key + 1 }}</td>
                             <td class="mdl-data-table__cell--non-numeric">{{ $item->name }}</td>
-                            <td class="mdl-data-table__cell--non-numeric">{{ $item->image }}</td>
-                            <td class="mdl-data-table__cell--non-numeric">{{ $item->active }}</td>
                             <td class="mdl-data-table__cell--non-numeric">
-                                <span class="label label--mini background-color--secondary">Delete</span>
+                                @if($item->active == 1)
+                                <span class="label label--mini color--green">Active</span>
+                                @else
+                                <span class="label label--mini background-color--secondary">Inactive</span>
+                                @endif
+                            </td>
+                            <td class="mdl-data-table__cell--non-numeric">
+                                <a
+                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-red">
+                                    Delete
+                                </a>
+                                <a href="{{ route('admin.category.edit', ['id' => $item->id ]) }}"
+                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-orange">
+                                    Edit
+                                </a>
                             </td>
                         </tr>
                         @endforeach

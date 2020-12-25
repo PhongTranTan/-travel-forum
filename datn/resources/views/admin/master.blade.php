@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 @include('admin.include.head')
+
 <body>
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer 
         mdl-layout--fixed-header 
@@ -12,5 +13,7 @@
         </main>
     </div>
     @include('admin.include.scripts')
+    @stack('scripts')
 </body>
+
 </html>

@@ -26,5 +26,6 @@
     <link rel="stylesheet" href="{{ url('assets/admin/css/lib/getmdl-select.min.css') }}">
     <link rel="stylesheet" href="{{ url('assets/admin/css/lib/nv.d3.min.css') }}">
     <link rel="stylesheet" href="{{ url('assets/admin/css/application.min.css') }}">
+    @stack('css')
     <!-- end css -->
 </head>

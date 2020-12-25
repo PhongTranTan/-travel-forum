@@ -35,7 +35,7 @@ Route::post('signup', 'CustomerController@postSignup')
 Route::get('forgot', 'CustomerController@forgot')
     ->name("page.forgot");
 Route::post('forgot', 'CustomerController@postForgot')
-    >name("post.forgot");
+    ->name("post.forgot");
 Route::post('review', 'CustomerController@postReview')
     ->name("post.review");
 

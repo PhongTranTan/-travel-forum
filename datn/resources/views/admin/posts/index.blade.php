@@ -4,12 +4,13 @@ Posts
 @extends('admin.master')
 @section('content')
 <div class="mdl-cell mdl-cell--12-col-desktop">
-    <a href="{{ route('admin.post.create') }}" class="button--colored-teal mdl-button mdl-button--raised mdl-js-button mdl-js-ripple-effect">
-        <i _ngcontent-serverapp-c93="" class="material-icons">create</i> 
+    <a href="{{ route('admin.post.create') }}"
+        class="button--colored-teal mdl-button mdl-button--raised mdl-js-button mdl-js-ripple-effect">
+        <i _ngcontent-serverapp-c93="" class="material-icons">create</i>
         Create <span class="mdl-button__ripple-container">
-            <span class="mdl-ripple is-animating" 
-            style="width: 262.161px; height: 262.161px; transform: translate(-50%, -50%) translate(36px, 21px);">
-        </span></span>
+            <span class="mdl-ripple is-animating"
+                style="width: 262.161px; height: 262.161px; transform: translate(-50%, -50%) translate(36px, 21px);">
+            </span></span>
     </a>
 </div>
 <div class="mdl-grid ui-tables">

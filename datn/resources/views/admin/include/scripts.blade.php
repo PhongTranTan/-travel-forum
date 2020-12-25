@@ -14,4 +14,5 @@
 <script src="{{ url('assets/admin/js/widgets/pie-chart/pie-charts-nvd3.min.js') }}"></script>
 <script src="{{ url('assets/admin/js/widgets/table/table.min.js') }}"></script>
 <script src="{{ url('assets/admin/js/widgets/todo/todo.min.js') }}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 <!-- end js -->
