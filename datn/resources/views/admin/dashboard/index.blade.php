@@ -20,7 +20,9 @@ Dashboard
                                     &#xE5C7
                                 </i>
                             </span>
-                            <span class="mdl-list__item-secondary-content trending__percent">1</span>
+                            <span class="mdl-list__item-secondary-content trending__percent">
+                                {{ $categoriesCount }}
+                            </span>
                         </li>
                         <li class="mdl-list__item list__item--border-top">
                             <span class="mdl-list__item-primary-content list__item-text">Post</span>
@@ -29,7 +31,9 @@ Dashboard
                                     &#xE5C7
                                 </i>
                             </span>
-                            <span class="mdl-list__item-secondary-content trending__percent">2</span>
+                            <span class="mdl-list__item-secondary-content trending__percent">
+                                {{ $postsCount }}
+                            </span>
                         </li>
                         <li class="mdl-list__item list__item--border-top">
                             <span class="mdl-list__item-primary-content list__item-text">Account</span>
@@ -38,7 +42,9 @@ Dashboard
                                     &#xE5C7
                                 </i>
                             </span>
-                            <span class="mdl-list__item-secondary-content trending__percent">1</span>
+                            <span class="mdl-list__item-secondary-content trending__percent">
+                                {{ $customersCount }}
+                            </span>
                         </li>
                     </ul>
                 </div>
