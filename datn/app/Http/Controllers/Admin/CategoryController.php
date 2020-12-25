@@ -21,26 +21,30 @@ class CategoryController extends Controller
 
     public function create() 
     {
-        return 1;
+        return view('admin.categories.create_or_update');
     }
 
-    public function store() 
+    public function store(Request $rq) 
     {
-        return 1;
+        return redirect()->route('admin.categories.index');
     }
 
-    public function edit() 
+    public function edit($id) 
     {
-        return 1;
+        $data = Category::find($id);
+        return view('admin.categories.create_or_update');
     }
 
-    public function update() 
+    public function update(Request $rq) 
     {
-        return 1;
+        $data = Category::find($id);
+        $input = $rq->all();
+        $data->update($input);
+        return redirect()->back();
     }
 
-    public function delete() 
+    public function delete($id) 
     {
-        return 1;
+        return redirect()->back();
     }
 }
