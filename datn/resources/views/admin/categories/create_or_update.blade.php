@@ -3,15 +3,6 @@ Categories
 @endsection
 @extends('admin.master')
 @section('content')
-    <div class="mdl-cell mdl-cell--12-col-desktop">
-        <a href="{{ route('admin.category.create') }}" class="button--colored-teal mdl-button mdl-button--raised mdl-js-button mdl-js-ripple-effect">
-            <i _ngcontent-serverapp-c93="" class="material-icons">create</i> 
-            Create <span class="mdl-button__ripple-container">
-                <span class="mdl-ripple is-animating" 
-                style="width: 262.161px; height: 262.161px; transform: translate(-50%, -50%) translate(36px, 21px);">
-            </span></span>
-        </a>
-    </div>
     <div class="mdl-grid ui-tables">
         <div class="mdl-cell mdl-cell--12-col-desktop mdl-cell--12-col-tablet mdl-cell--4-col-phone">
             <div class="mdl-card mdl-shadow--2dp">
