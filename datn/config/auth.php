@@ -46,6 +46,11 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
+        
+        'customer' => [
+            'driver' => 'session',
+            'provider' => 'customer',
+        ],
     ],
 
     /*
@@ -75,6 +80,11 @@ return [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
+
+        'customer' => [
+            'driver' => 'eloquent',
+            'model' =>  App\Models\Customer::class,
+        ],
     ],
 
     /*
@@ -98,6 +108,11 @@ return [
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,
+        ],
+        'customer' => [
+            'provider' => 'customer',
+            'table' => 'customer_password_resets',
+            'expire' => 60,
         ],
     ],
 

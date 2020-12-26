@@ -4,14 +4,20 @@ namespace App\Http\Controllers\Frontend;
 use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
+use App\Models\Post;
 
 class BaseController extends Controller
 {
     public function index()
     {
         $isHome = 1;
+        $categories = Category::active()->get();
+        $categoriesLimit = $categories->slice(0,5);
         return view('frontend.index', compact (
-            'isHome'
+            'isHome',
+            'categories',
+            'categoriesLimit'
         ));
     }
 
