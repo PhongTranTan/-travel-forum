@@ -14,12 +14,15 @@
                 </div>
                 <div class="p-detail_evaluate-side col-lg-5 col-md-5">
                     <div class="p-detail_evaluate_action">
-                        <div class="p-detail_evaluate_action-rating"><span>9.5</span></div>
+                        <div class="p-detail_evaluate_action-rating"><span>{{ $data->count_ratings }}</span></div>
                         <div class="review-btn">
-                            <a class="btn btn-outline-danger" href="#modalReviewHandle" data-toggle="modal">
+                            <a class="btn btn-outline-danger" 
+                                href="@if(Auth::guard('customer')->check()) #modalReviewHandle @else #modalLogin @endif" 
+                                data-toggle="modal"
+                            >
                                 WRITE A REVIEW
                             </a>
-                            <span>34 reviews</span>
+                            <span>{{ $data->count_reviews }} reviews</span>
                         </div>
                     </div>
                 </div>
@@ -91,7 +94,11 @@
         }
         $(function(){
             rangeSlider();
-            appendReviewTemplate();
+            // appendReviewTemplate();
+
+            @if(session()->has("success"))
+                $('#modalSuccess').modal('show');
+            @endif
         })
     })(jQuery);
 </script>

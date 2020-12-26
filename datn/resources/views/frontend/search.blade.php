@@ -25,6 +25,7 @@ Danh sách tìm kiếm
                 @endforeach
             </div>
         </div>
+        @if($posts->total() > 9 )
         <div class="featuredPanel_viewMore wow zoomIn">
             <a class="btn-custom show-more-list" 
                 href="javascript:void(0)"
@@ -34,6 +35,7 @@ Danh sách tìm kiếm
             </a>
         </div>
         @endif
+        @endif
     </div>
 </section>
 @endsection
@@ -42,7 +44,6 @@ Danh sách tìm kiếm
     $( function() {
         $('body').on('click', '.show-more-list', function(e) {
             e.preventDefault();
-            alert('a');
             let url = $(this).attr('data-url-next');
             $.ajax({
                 method: "GET",

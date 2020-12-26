@@ -39,8 +39,32 @@ class Post extends Model
         return $query->where('category_id', $categoryId);
     }
 
+    public function scopeByKeyWord($query, $byKeyWord)
+    {
+        return $query->where( function ($sq) use ($byKeyWord) {
+            $sq->where('name', 'LIKE', "%$byKeyWord%")
+                ->orWhere('title', 'LIKE', "%$byKeyWord%");
+        });
+    }
+    
     public function category()
     {
         return $this->belongsTo(Category::class, 'category_id');
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class, 'post_id');
+    }
+
+    public function getCountReviewsAttribute()
+    {
+        return $this->reviews->count();
+    }
+
+    public function getCountRatingsAttribute()
+    {
+        $count = $this->count_reviews ? ($this->reviews->sum('rating') / $this->count_reviews) : 0;
+        return (double) round($count, 1);
     }
 }

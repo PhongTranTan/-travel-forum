@@ -50,15 +50,17 @@ Du lịch
             <div class="gridGallery-sizer"></div>
             @if($categoriesLimit)
             @foreach ($categoriesLimit->slice(0,5) as $keyCategory => $category)
-            <div class="gridGallery_item wow  {{ getClassCategories($keyCategory) }}">
-                <figure class="effect-ruby">
-                    <img src="{{ getImageCategory($category) }}" alt="gallery" loading="lazy">
-                    <figcaption>
-                        <h5>{{ $category->name }}</h5>
-                        <p>{{ $category->count_post }} listings</p>
-                    </figcaption>
-                </figure>
-            </div>
+            <a href="{{ route('page.search', ['category' => $category->id ]) }}">
+                <div class="gridGallery_item wow  {{ getClassCategories($keyCategory) }}">
+                    <figure class="effect-ruby">
+                        <img src="{{ getImageCategory($category) }}" alt="gallery" loading="lazy">
+                        <figcaption>
+                            <h5>{{ $category->name }}</h5>
+                            <p>{{ $category->count_post }} listings</p>
+                        </figcaption>
+                    </figure>
+                </div>
+            </a>
             @endforeach
             @endif
         </div>

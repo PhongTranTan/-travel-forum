@@ -26,7 +26,15 @@ class BaseController extends Controller
     public function search(Request $request)
     {
         $input = $request->all();
-        $posts = Post::with(['category'])->sortPost()->active()->paginate(9);
+        $posts = Post::with(['category'])->sortPost()->active();
+        if (isset($input['key_word'])) {
+            $posts = $posts->byKeyWord($input['key_word']);
+        }
+        if (isset($input['category'])) {
+            $posts = $posts->byCategory($input['category']);
+        }
+
+        $posts = $posts->paginate(9);
         //-- Ajax load page Search list
         if ($request->ajax()) {
             $nextPage = $posts->nextPageUrl();
@@ -45,7 +53,7 @@ class BaseController extends Controller
 
     public function detail($id)
     {
-        $data = Post::find($id);
+        $data = Post::with(['reviews'])->find($id);
         if (!$data) {
             return redirect()->route('page.home');
         }

@@ -22,9 +22,9 @@
                     <li>
                         <i class="icon ic-clock"></i>
                         <span>{!! $data->time_start ?? "" !!} - {!! $data->time_end ?? "" !!} </span>
-                        <div class="bottom-icons open">
+                        {{-- <div class="bottom-icons open">
                             <p>Open Now</p>
-                        </div>
+                        </div> --}}
                     </li>
                 </ul>
             </div>

@@ -1,5 +1,5 @@
 <div class="featuredPanel_item">
-    <div class="featuredPanel_rating">7.5</div>
+    <div class="featuredPanel_rating">{{ $item->count_ratings }}</div>
     <div class="featuredPanel_item_wrap">
         <div class="featuredPanel_item_img">
             <a class="img-bg" 
@@ -15,7 +15,7 @@
             </a>
             <p>
                 <span>{{ $item->category->name ?? "" }}</span>
-                <span>• 3 Reviews</span>
+                <span>• {{ $item->count_reviews }} Reviews</span>
                 <span>• {{ $item->view ?? 0 }}</span>
             </p>
             <ul>
@@ -29,9 +29,9 @@
                     <i class="icon ic-link"></i>
                     <span>{{ $item->website ?? "" }}</span></li>
             </ul>
-            <div class="bottom-icons close">
+            {{-- <div class="bottom-icons close">
                 <p>Close Now</p>
-            </div>
+            </div> --}}
         </div>
     </div>
 </div>

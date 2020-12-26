@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\Frontend;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Session;
+use App\Http\Controllers\Controller;
+use App\Models\Review;
 
 
 use App\Models\Customer;
@@ -132,9 +133,13 @@ class CustomerController extends Controller
         ));
     }
 
-    public function postReview()
+    public function postReview(Request $rq)
     {
-        return 1;
+        $input = $rq->all();
+        $input['customer_id'] = Auth::guard('customer')->user()->id;
+        Review::create($input);
+        session()->flash('success', 'Review Success !');
+        return redirect()->back();
     }
 
     public function logout()
