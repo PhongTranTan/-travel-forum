@@ -83,7 +83,7 @@ Post
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
+                            {{-- <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="lat">Lat</label>
@@ -96,6 +96,22 @@ Post
                                         <label for="lng">Lng</label>
                                         <input class="form-control" type="text" id="lng" name="lng"
                                             value="{{ !empty($data) ? $data->lng : "" }}">
+                                    </div>
+                                </div>
+                            </div> --}}
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="description">Description</label>
+                                        <textarea class="form-control" name="description" id="description" cols="30" rows="10">{{ !empty($data) ? $data->description : "" }}</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="iframe">Iframe</label>
+                                        <textarea class="form-control" name="iframe" id="iframe" cols="30" rows="10">{{ !empty($data) ? $data->iframe : "" }}</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -162,6 +178,7 @@ Post
 </div>
 @endsection
 @push('scripts')
+<script src="//cdn.ckeditor.com/4.15.1/standard/ckeditor.js"></script>
 <script>
     function readURL(input) {
         if (input.files && input.files[0]) {
@@ -191,6 +208,8 @@ Post
             $('.image-upload-wrap').bind('dragleave', function () {
                 $('.image-upload-wrap').removeClass('image-dropping');
         });
+
+        CKEDITOR.replace('description');
     });
 </script>
 @endpush

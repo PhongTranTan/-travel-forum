@@ -1,6 +1,6 @@
 <header class="nav-menu headerPage">
     <div class="container-fluid fixed">
-        <div class="navbar navbar-expand-lg navbar-light"><a class="navbar-brand" href="/"><img src="images/logo.png"
+        <div class="navbar navbar-expand-lg navbar-light"><a class="navbar-brand" href="/"><img src="/images/logo.png"
                     alt="vtour"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
                 aria-controls="navbarNavDropdown" aria-expanded="true" aria-label="Toggle navigation"><span

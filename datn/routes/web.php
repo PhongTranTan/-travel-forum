@@ -19,7 +19,7 @@ Route::get('/', 'BaseController@index')
     ->name("page.home");
 Route::get('search', 'BaseController@search')
     ->name("page.search");
-Route::get('detail', 'BaseController@detail')
+Route::get('detail/{id}', 'BaseController@detail')
     ->name("page.detail");
 Route::get('about', 'BaseController@about')
     ->name("page.about");

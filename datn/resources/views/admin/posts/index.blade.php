@@ -60,7 +60,7 @@ Posts
                                 @endif
                             </td>
                             <td class="mdl-data-table__cell--non-numeric">
-                                <a  href="{{ route('admin.post.delete', ['id' => $item->id]) }}"
+                                <a href="{{ route('admin.post.delete', ['id' => $item->id]) }}"
                                     class="delete-item mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-red">
                                     Delete
                                 </a>
@@ -88,14 +88,14 @@ Posts
 @include('admin.include.modal.delete')
 @endsection
 @push('scripts')
-    <script>
-        $( function() { 
-            $('.delete-item').on('click', function (e) {
-                e.preventDefault();
-                let urlDelete = $(this).attr('href');
-                $('#form-delete').attr('action', urlDelete);
-                $('#modalDelete').modal('show');
-            });
+<script>
+    $( function() { 
+        $('body').on('click', '.delete-item', function (e) {
+            e.preventDefault();
+            let urlDelete = $(this).attr('href');
+            $('#form-delete').attr('action', urlDelete);
+            $('#modalDelete').modal('show');
         });
-    </script>
+    });
+</script>
 @endpush

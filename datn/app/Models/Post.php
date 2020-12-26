@@ -21,11 +21,22 @@ class Post extends Model
         'time_start',
         'time_end',
         'active',
+        'iframe',
     ];
 
     public function scopeActive($query)
     {
         return $query->where('active', 1);
+    }
+
+    public function scopeSortPost($query)
+    {
+        return $query->orderBy('id', 'DESC');
+    }
+
+    public function scopeByCategory($query, $categoryId)
+    {
+        return $query->where('category_id', $categoryId);
     }
 
     public function category()

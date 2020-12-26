@@ -33,9 +33,12 @@
     <script src="/assets/js/library.js"></script>
     <script async src="/assets/js/pages.js"></script>
     @endif
+    
     <script>
-        $(function () {
-                
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-Token': '{{ csrf_token() }}'
+            }
         });
     </script>
     @stack('scripts')

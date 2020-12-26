@@ -31,4 +31,14 @@ class Category extends Model
             8 => '<i class="icon ic-destination"></i>',
         ];
     }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class, 'category_id');
+    }
+
+    public function getCountPostAttribute()
+    {
+        return $this->posts->count();
+    }
 }
