@@ -14,10 +14,9 @@ Categories
                 <h5 class="mdl-card__title-text text-color--white">Create Category</h5>
             </div>
             <div class="mdl-card__supporting-text">
-                <form class="form form--basic" 
-                    action="{{ !empty($data) ? route('admin.category.update', ['id' => $data->id ]) : route('admin.category.store') }}" 
-                    method="POST"
-                    enctype="multipart/form-data">
+                <form class="form form--basic"
+                    action="{{ !empty($data) ? route('admin.category.update', ['id' => $data->id ]) : route('admin.category.store') }}"
+                    method="POST" enctype="multipart/form-data">
                     @csrf
                     @if(isset($data))
                     @method('PUT')
@@ -30,6 +29,19 @@ Categories
                                     value="{{ !empty($data) ? $data->name : "" }}">
                                 <label class="mdl-textfield__label" for="first-name">Name</label>
                             </div>
+                            <div class="form-group">
+                                <label for="icon">Icon</label>
+                                <select class="form-control" id="icon" name="icon">
+                                    <option value="1" @if(!empty($data) && $data->icon == 1) selected @endif>Icon Automotive</option>
+                                    <option value="2" @if(!empty($data) && $data->icon == 2) selected @endif>Icon Spa</option>
+                                    <option value="3" @if(!empty($data) && $data->icon == 3) selected @endif>Icon Hotel</option>
+                                    <option value="4" @if(!empty($data) && $data->icon == 4) selected @endif>Icon Restaurant</option>
+                                    <option value="5" @if(!empty($data) && $data->icon == 5) selected @endif>Icon Shopping</option>
+                                    <option value="6" @if(!empty($data) && $data->icon == 6) selected @endif>Icon Coffee</option>
+                                    <option value="7" @if(!empty($data) && $data->icon == 7) selected @endif>Icon Club & Bar</option>
+                                    <option value="8" @if(!empty($data) && $data->icon == 8) selected @endif>Icon Destination</option>
+                                </select>
+                              </div>
                             <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect switch--colored-green"
                                 for="active">
                                 <input name="active" type="checkbox" id="active" class="mdl-switch__input"
@@ -40,15 +52,17 @@ Categories
                     </div>
                     <div class="file-upload">
                         <h5 style="color:black">Image</h5>
-                        <div class="image-upload-wrap" style="display:{{ !empty($data) ? "none" : "block" }}">
+                        <div class="image-upload-wrap" style="display:{{ !empty($data) && $data->image ? "none" : "block" }}">
                             <input name="image" class="file-upload-input" type='file' onchange="readURL(this);"
                                 accept="image/*" />
                             <div class="drag-text">
                                 <h3>Drag and drop a file or select add Image</h3>
                             </div>
                         </div>
-                        <div class="file-upload-content" style="display:{{ !empty($data) ? "block" : "none" }}">
-                            <img class="file-upload-image" src="{{ !empty($data) && $data->image ? Storage::url($data->image) : "" }}" alt="your image" />
+                        <div class="file-upload-content" style="display:{{ !empty($data) && $data->image ? "block" : "none" }}">
+                            <img class="file-upload-image"
+                                src="{{ !empty($data) && $data->image ? Storage::url($data->image) : "" }}"
+                                alt="your image" />
                             <div class="image-title-wrap">
                                 <button type="button" onclick="removeUpload()" class="remove-image">
                                     Remove
@@ -57,7 +71,8 @@ Categories
                             </div>
                         </div>
                     </div>
-                    <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-red">
+                    <a href="{{ route('admin.category.index') }}"
+                        class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-red">
                         Back
                     </a>
                     <button style="float: right" type="submit"

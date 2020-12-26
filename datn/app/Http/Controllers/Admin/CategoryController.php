@@ -52,6 +52,8 @@ class CategoryController extends Controller
 
     public function delete($id) 
     {
+        $data = Category::find($id);
+        $data->delete(); 
         return redirect()->back();
     }
 
