@@ -28,14 +28,23 @@ Customers
                         @foreach($customers as $key => $item)
                         <tr>
                             <td class="mdl-data-table__cell--non-numeric">{{ $key + 1 }}</td>
-                            <td class="mdl-data-table__cell--non-numeric">{{ $item->name }}</td>
-                            <td class="mdl-data-table__cell--non-numeric">{{ $item->image }}</td>
-                            <td class="mdl-data-table__cell--non-numeric">{{ $item->active }}</td>
-                            <td class="mdl-data-table__cell--non-numeric">{{ $item->active }}</td>
-                            <td class="mdl-data-table__cell--non-numeric">{{ $item->active }}</td>
-                            <td class="mdl-data-table__cell--non-numeric">{{ $item->active }}</td>
+                            <td class="mdl-data-table__cell--non-numeric">{{ $item->full_name ?? 'Chưa cập nhật' }}</td>
+                            <td class="mdl-data-table__cell--non-numeric">{{ $item->phone ?? 'Chưa cập nhật' }}</td>
+                            <td class="mdl-data-table__cell--non-numeric">{{ $item->email ?? 'Chưa cập nhật' }}</td>
+                            <td class="mdl-data-table__cell--non-numeric">{{ $item->address ?? 'Chưa cập nhật'}}</td>
+                            <td class="mdl-data-table__cell--non-numeric">{{ $item->job ?? 'Chưa cập nhật' }}</td>
                             <td class="mdl-data-table__cell--non-numeric">
-                                <span class="label label--mini background-color--secondary">Delete</span>
+                                Active
+                            </td>
+                            <td class="mdl-data-table__cell--non-numeric">
+                                <a  href="{{ route('admin.customer.delete', ['id' => $item->id]) }}"
+                                    class="delete-item mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-red">
+                                    Delete
+                                </a>
+                                <a href="{{ route('admin.customer.view', ['id' => $item->id ]) }}"
+                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-orange">
+                                    View
+                                </a>
                             </td>
                         </tr>
                         @endforeach

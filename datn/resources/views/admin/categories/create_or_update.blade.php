@@ -6,7 +6,6 @@ Categories
 <link rel="stylesheet" href="{{ url('assets/admin/css/image/image.css') }}">
 @endpush
 @section('content')
-
 <div class="mdl-grid mdl-cell mdl-cell--12-col-desktop mdl-cell--12-col-tablet mdl-cell--4-col-phone mdl-cell--top">
     <div class="mdl-cell mdl-cell--12-col-desktop mdl-cell--12-col-tablet mdl-cell--4-col-phone">
         <div class="mdl-card mdl-shadow--2dp">

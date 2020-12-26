@@ -46,6 +46,8 @@ Route::group([
             ->name("update");
         Route::delete('delete/{id}', 'PostController@delete')
             ->name("delete");
+        Route::get('clone-post/{number}', 'PostController@clonePost')
+            ->name("clone");
     });
 
     //-- Customers
@@ -55,9 +57,11 @@ Route::group([
     ], function () {
         Route::get('/', 'CustomerController@index')
             ->name("index");
-        Route::get('view', 'CustomerController@view')
+        Route::get('view/{id}', 'CustomerController@view')
             ->name("view");
-        Route::get('update/{id}', 'CustomerController@update')
+        Route::put('update/{id}', 'CustomerController@update')
             ->name("update");
+        Route::delete('delete/{id}', 'CustomerController@delete')
+            ->name("delete");
     });
 });
