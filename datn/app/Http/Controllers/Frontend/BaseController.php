@@ -57,6 +57,8 @@ class BaseController extends Controller
         if (!$data) {
             return redirect()->route('page.home');
         }
+        $data->view = $data->view + 1;
+        $data->save();
         return view('frontend.detail', compact(
             'data'
         ));

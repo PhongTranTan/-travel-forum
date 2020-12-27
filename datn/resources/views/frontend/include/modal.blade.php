@@ -8,6 +8,7 @@
             <div class="form-content">
                 <form class="form form-validate" action="{{ route('login') }}" method="POST">
                     @csrf
+                    <input type="hidden" name="url_current" value="{{ request()->url() }}">
                     <div class="form-list">
                         <input type="email" name="email" placeholder="Email" required>
                     </div>

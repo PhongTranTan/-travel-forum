@@ -41,10 +41,10 @@ Customers
                             <td class="mdl-data-table__cell--non-numeric">{{ $item->job_address ?? 'Chưa cập nhật' }}</td>
                             <td class="mdl-data-table__cell--non-numeric">
                                 <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect switch--colored-green"
-                                    for="active">
-                                    <input name="active" 
-                                        type="checkbox" 
-                                        id="active" 
+                                    for="active{{ $item->id }}">
+                                    <input name="active"
+                                        type="checkbox"
+                                        id="active{{ $item->id }}"
                                         class="mdl-switch__input off-account"
                                         data-href = "{{ route('admin.customer.update', ['id' => $item->id ]) }}"
                                         {{ !empty($item) && $item->active == 1 ? 'checked' : "" }}>
@@ -81,7 +81,7 @@ Customers
 @endsection
 @push('scripts')
     <script>
-        $( function() { 
+        $( function() {
             $('.delete-item').on('click', function (e) {
                 e.preventDefault();
                 let urlDelete = $(this).attr('href');

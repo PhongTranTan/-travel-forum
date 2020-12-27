@@ -58,6 +58,9 @@ aria-hidden="true">
         $(this).unbind('submit').submit();
     });
 
+    @if(session()->has("success"))
+        $('#modalSuccessSent').modal('show');
+    @endif
 
     $('#modalSuccessSent').on('hidden.bs.modal', ()=>{
         window.location.href='/'

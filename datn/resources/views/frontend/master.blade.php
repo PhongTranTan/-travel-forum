@@ -33,7 +33,7 @@
     <script src="/assets/js/library.js"></script>
     <script async src="/assets/js/pages.js"></script>
     @endif
-    
+
     <script>
         $.ajaxSetup({
             headers: {
@@ -44,6 +44,13 @@
             @if(session()->has("error"))
                 alert('Login fail');
             @endif
+            @if(session()->has("success"))
+                $('#modalSuccessSent').modal('show');
+            @endif
+
+            $('#modalSuccessSent').on('hidden.bs.modal', ()=>{
+                window.location.href='/'
+            });
         });
     </script>
     @stack('scripts')

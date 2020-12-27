@@ -18,7 +18,7 @@
                         <div class="estimate-star">
                             <div class="rating">
                                 <div class="empty-stars"></div>
-                                <div class="full-stars" style="width:70%"></div>
+                                <div class="full-stars" style="width:{{ $item->rating * 10 }}%"></div>
                             </div>
                         </div>
                         <div class="estimate-item">
@@ -28,16 +28,16 @@
                 </div>
                 <div class="customer-rating">{{ (double) $item->rating }}</div>
             </div>
-            <div class="customer-text"> 
+            <div class="customer-text">
                 <p>
-                    {{ (double) $item->content }}
+                    {{ $item->content }}
                 </p>
             </div>
         </div>
     </div>
     <hr>
     @endforeach
-    @else 
+    @else
     <h5>{{ $data->count_reviews }} Reviews</h5>
     @endif
     <div id="template-groups-append"></div>

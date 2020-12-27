@@ -136,7 +136,7 @@ Post
             <hr>
             <h5>Banners current</h5>
             <div class="row">
-                @if($data->banners_admin)
+                @if( !empty($data) && $data->banners_admin)
                 @foreach ($data->banners_admin as  $keyb => $banner)
                 {{-- <figure class="figure">
                     <img width="60" height="60" src="{{ $banner }}" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">

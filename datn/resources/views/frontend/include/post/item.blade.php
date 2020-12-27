@@ -2,8 +2,8 @@
     <div class="featuredPanel_rating">{{ $item->count_ratings }}</div>
     <div class="featuredPanel_item_wrap">
         <div class="featuredPanel_item_img">
-            <a class="img-bg" 
-                href="{{ route('page.detail', ['id' => $item->id]) }}" 
+            <a class="img-bg"
+                href="{{ route('page.detail', ['id' => $item->id]) }}"
                 style="background-image: url({{ $item->image ? Storage::url($item->image) : "/images/feature1.jpg" }})"
                 title="thumbnail">
                 <img src="{{ $item->image ? Storage::url($item->image) : "/images/feature1.jpg" }}" alt="thumbnail" loading="lazy">
@@ -16,7 +16,7 @@
             <p>
                 <span>{{ $item->category->name ?? "" }}</span>
                 <span>• {{ $item->count_reviews }} Reviews</span>
-                <span>• {{ $item->view ?? 0 }}</span>
+                <span>• {{ $item->view ?? 0 }} Views</span>
             </p>
             <ul>
                 <li>

@@ -18,6 +18,7 @@ class CustomerController extends Controller
     public function login(Request $rq)
     {
         $input = $rq->all();
+        // dd($input['url_current']);
         $check = Auth::guard('customer')->check();
         //-- Logined
         if ($check) {
@@ -26,7 +27,7 @@ class CustomerController extends Controller
         //-- Not Login
         $loginCheck = Auth::guard('customer')->attempt(
             [
-                'email' => $input['email'], 
+                'email' => $input['email'],
                 'password' => $input['password'],
                 'active' => 1
             ]
@@ -37,6 +38,10 @@ class CustomerController extends Controller
         }
         Auth::guard('customer');
         session()->flash('success', 'Login Success !');
+
+        if ( isset($input['url_current']) ) {
+            return redirect($input['url_current']);
+        }
         return redirect()->route('page.profile');
     }
 
@@ -63,15 +68,15 @@ class CustomerController extends Controller
         if (!$checkAction) {
             session()->flash('error', 'Update error !');
             return redirect()->back();
-        }  
+        }
         session()->flash('success', 'Update Success !');
         return redirect()->route('page.profile');
     }
 
     public function parseInput($rq, $customer, $input)
     {
-        if (isset($input['password_old']) 
-            && isset($input['new_password'])  
+        if (isset($input['password_old'])
+            && isset($input['new_password'])
             && isset($input['confirm_password'])) {
             if (!password_verify($input['password_old'], $customer->password)) {
                 session()->flash('error', 'Incorrect password!');
@@ -81,7 +86,7 @@ class CustomerController extends Controller
                 session()->flash('error', 'Update password fail, passwords are not the same !');
                 return redirect()->back();
             }
-            $input['password'] = Hash::make($input['new_password']); 
+            $input['password'] = Hash::make($input['new_password']);
         }
         if( $rq->file('avatar') ) {
             $type = $rq->file('avatar')->extension();
@@ -108,7 +113,7 @@ class CustomerController extends Controller
         $input['password'] = Hash::make($input['password']);
         $customer = Customer::create($input);
         Auth::guard('customer')->login($customer);
-        return redirect()->route('profile');
+        return redirect()->route('page.profile');
     }
 
     public function signup()
@@ -147,6 +152,7 @@ class CustomerController extends Controller
             ->subject('Reset Password')
             ->setBody($content);
         });
+        session()->flash('success', 'Forgot Success!');
         return redirect()->route('page.home');
     }
 

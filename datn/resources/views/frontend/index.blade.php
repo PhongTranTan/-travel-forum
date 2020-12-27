@@ -130,4 +130,20 @@ Du lịch
     </div>
 </section>
 <!-- end categories -->
+<div class="modal fade" id="modalSuccessSent" tabindex="-1" role="dialog" aria-labelledby="modalSuccessSentLabel"
+aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered modal-" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Successful !</h5>
+        </div>
+        <div class="modal-body">
+            <p>The reset password has sent to your mail</p>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+        </div>
+    </div>
+</div>
+</div>
 @endsection

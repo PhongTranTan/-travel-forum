@@ -30,8 +30,8 @@ class CustomerController extends Controller
     public function delete($id)
     {
         $data = Customer::find($id);
-        $data->delete(); 
+        $data->delete();
         session()->flash('success', 'Delete Success !');
-        return redirect()->back();
+        return redirect()->route('admin.customer.index');
     }
 }
