@@ -6,6 +6,7 @@
 <section class="p-fullscreen" style="background-image:url(&quot;/images/travel.png&quot;)">
     <div class="container">
         <div class="form-content form-content-floating wow fadeIn">
+            @include('frontend.include.noti')
             <form class="form form-validate" action="{{ route('post.signup') }}" id="frmSignUp" method="POST">
                 @csrf
                 <div class="form_title">Create a Listings free account</div>

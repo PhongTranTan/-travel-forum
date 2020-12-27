@@ -40,6 +40,11 @@
                 'X-CSRF-Token': '{{ csrf_token() }}'
             }
         });
+        $( function () {
+            @if(session()->has("error"))
+                alert('Login fail');
+            @endif
+        });
     </script>
     @stack('scripts')
     <!-- end script -->

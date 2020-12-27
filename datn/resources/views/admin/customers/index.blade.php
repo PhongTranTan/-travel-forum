@@ -15,10 +15,12 @@ Customers
                         <tr>
                             <th class="mdl-data-table__cell--non-numeric" style="width:30px">No.</th>
                             <th class="mdl-data-table__cell--non-numeric">Full Name</th>
+                            <th class="mdl-data-table__cell--non-numeric">Avatar</th>
                             <th class="mdl-data-table__cell--non-numeric">Phone</th>
                             <th class="mdl-data-table__cell--non-numeric">Email</th>
                             <th class="mdl-data-table__cell--non-numeric">Address</th>
                             <th class="mdl-data-table__cell--non-numeric">Job</th>
+                            <th class="mdl-data-table__cell--non-numeric">Job Address</th>
                             <th class="mdl-data-table__cell--non-numeric">Active</th>
                             <th class="mdl-data-table__cell--non-numeric">Action</th>
                         </tr>
@@ -29,22 +31,35 @@ Customers
                         <tr>
                             <td class="mdl-data-table__cell--non-numeric">{{ $key + 1 }}</td>
                             <td class="mdl-data-table__cell--non-numeric">{{ $item->full_name ?? 'Chưa cập nhật' }}</td>
+                            <td class="mdl-data-table__cell--non-numeric">
+                                <img src="{{ $item->avatar ? Storage::url($item->avatar) : '' }}" alt="" height="30" width="30">
+                            </td>
                             <td class="mdl-data-table__cell--non-numeric">{{ $item->phone ?? 'Chưa cập nhật' }}</td>
                             <td class="mdl-data-table__cell--non-numeric">{{ $item->email ?? 'Chưa cập nhật' }}</td>
                             <td class="mdl-data-table__cell--non-numeric">{{ $item->address ?? 'Chưa cập nhật'}}</td>
                             <td class="mdl-data-table__cell--non-numeric">{{ $item->job ?? 'Chưa cập nhật' }}</td>
+                            <td class="mdl-data-table__cell--non-numeric">{{ $item->job_address ?? 'Chưa cập nhật' }}</td>
                             <td class="mdl-data-table__cell--non-numeric">
-                                Active
+                                <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect switch--colored-green"
+                                    for="active">
+                                    <input name="active" 
+                                        type="checkbox" 
+                                        id="active" 
+                                        class="mdl-switch__input off-account"
+                                        data-href = "{{ route('admin.customer.update', ['id' => $item->id ]) }}"
+                                        {{ !empty($item) && $item->active == 1 ? 'checked' : "" }}>
+                                    <span class="mdl-switch__label">Active</span>
+                                </label>
                             </td>
                             <td class="mdl-data-table__cell--non-numeric">
                                 <a  href="{{ route('admin.customer.delete', ['id' => $item->id]) }}"
                                     class="delete-item mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-red">
                                     Delete
                                 </a>
-                                <a href="{{ route('admin.customer.view', ['id' => $item->id ]) }}"
+                                {{-- <a href="{{ route('admin.customer.view', ['id' => $item->id ]) }}"
                                     class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-orange">
                                     View
-                                </a>
+                                </a> --}}
                             </td>
                         </tr>
                         @endforeach
@@ -62,5 +77,36 @@ Customers
         </div>
     </div>
 </div>
-
+@include('admin.include.modal.delete')
 @endsection
+@push('scripts')
+    <script>
+        $( function() { 
+            $('.delete-item').on('click', function (e) {
+                e.preventDefault();
+                let urlDelete = $(this).attr('href');
+                $('#form-delete').attr('action', urlDelete);
+                $('#modalDelete').modal('show');
+            });
+
+            $('.off-account').on('change', function () {
+                let urlUpdate = $(this).attr('data-href');
+                let active = 0;
+                if($(this).is(':checked')) {
+                    active = 1
+                }
+                $.ajax({
+                    url: urlUpdate,
+                    type: "PUT",
+                    data: { active: active },
+                    success: function () {
+                        alert('Update status success !')
+                    },
+                    error: function () {
+                        alert('Update status fail !')
+                    }
+                });
+            });
+        });
+    </script>
+@endpush

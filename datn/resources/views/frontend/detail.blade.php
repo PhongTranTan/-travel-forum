@@ -3,7 +3,8 @@
 @endsection
 @extends('frontend.master')
 @section('content')
-@include('frontend.include.post.detail.gallery')
+@php $images = getGallery(); @endphp
+@include('frontend.include.post.detail.gallery', ['images' => $images])
 <div class="p-detail">
     <section class="p-detail_evaluate">
         <div class="container">

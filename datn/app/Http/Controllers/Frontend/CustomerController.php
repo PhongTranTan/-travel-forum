@@ -32,7 +32,8 @@ class CustomerController extends Controller
             ]
         );
         if (!$loginCheck) {
-            session()->flash('error', 'Login Fail !');
+            session()->flash('error', 'Login Fail - Account password incorrect !');
+            return redirect()->back();
         }
         Auth::guard('customer');
         session()->flash('success', 'Login Success !');
@@ -101,6 +102,7 @@ class CustomerController extends Controller
         $input = $rq->all();
         $exits = Customer::where('email', $input['email'])->first();
         if ($exits) {
+            session()->flash('error', 'Email exits on System!');
             return redirect()->back();
         }
         $input['password'] = Hash::make($input['password']);
@@ -125,12 +127,38 @@ class CustomerController extends Controller
         ));
     }
 
-    public function postForgot()
+    public function postForgot(Request $rq)
     {
         $isMainPage = 1;
-        return view('frontend.forgot', compact(
-            'isMainPage'
-        ));
+        $input = $rq->all();
+        $exits = Customer::where('email', $input['email'])->first();
+        if (!$exits) {
+            session()->flash('error', 'Email not exits on System!');
+            return redirect()->back();
+        }
+        $passNew = $this->generateRandomString();
+        $exits->password = Hash::make($passNew);
+        $exits->save();
+        $emailSend = trim($exits->email);
+        $nameSend = $exits->full_name;
+        $content = "Mật khẩu mới của bạn là {$passNew}";
+        Mail::send([], [], function ($message) use ($emailSend, $nameSend, $content) {
+            $message->to($emailSend)
+            ->subject('Reset Password')
+            ->setBody($content);
+        });
+        return redirect()->route('page.home');
+    }
+
+    private function generateRandomString($length = 8) {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_@';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        $randomString = $randomString . "@123";
+        return $randomString;
     }
 
     public function postReview(Request $rq)

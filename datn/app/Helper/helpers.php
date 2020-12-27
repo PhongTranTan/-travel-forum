@@ -32,5 +32,17 @@ function getClassCategories($key)
     return $arr[$key];
 }
 
+function getGallery()
+{
+    $arr =  [
+        '/images/detail1.jpg',
+        '/images/detail2.jpg',
+        '/images/detail1.jpg',
+        '/images/detail3.jpg',
+        '/images/detail2.jpg',
+    ];
+    return $arr;
+}
+
 
 

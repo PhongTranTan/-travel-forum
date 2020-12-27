@@ -17,6 +17,13 @@
 <script src="{{ url('assets/admin/js/widgets/pie-chart/pie-charts-nvd3.min.js') }}"></script>
 <script src="{{ url('assets/admin/js/widgets/table/table.min.js') }}"></script>
 <script src="{{ url('assets/admin/js/widgets/todo/todo.min.js') }}"></script>
+<script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-Token': '{{ csrf_token() }}'
+        }
+    });
+</script>
 {{-- <script src="{{ url('assets/admin/js/bootstrap/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ url('assets/admin/js/bootstrap/bootstrap.min.js') }}"></script> --}}
 <!-- end js -->

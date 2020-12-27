@@ -19,13 +19,19 @@ class CustomerController extends Controller
         ));
     }
 
-    public function view()
+    public function update($id, Request $rq)
     {
-
+        $input = $rq->all();
+        $dt = Customer::find($id);
+        $dt->update($input);
+        return 1;
     }
 
-    public function update()
+    public function delete($id)
     {
-
+        $data = Customer::find($id);
+        $data->delete(); 
+        session()->flash('success', 'Delete Success !');
+        return redirect()->back();
     }
 }
