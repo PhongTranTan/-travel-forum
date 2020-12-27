@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Post extends Model
 {
@@ -57,6 +58,11 @@ class Post extends Model
         return $this->hasMany(Review::class, 'post_id');
     }
 
+    public function images()
+    {
+        return $this->hasMany(PostImage::class, 'post_id');
+    }
+
     public function getCountReviewsAttribute()
     {
         return $this->reviews->count();
@@ -66,5 +72,29 @@ class Post extends Model
     {
         $count = $this->count_reviews ? ($this->reviews->sum('rating') / $this->count_reviews) : 0;
         return (double) round($count, 1);
+    }
+
+    public function getBannersAttribute()
+    {
+        $banners = [];
+        if ($this->images->count() > 0) {
+            foreach ($this->images as $key => $item) {
+                array_push($banners, Storage::url($item->path));
+            }
+        } else {
+            $banners = getGallery();
+        }
+        return $banners;
+    }
+
+    public function getBannersAdminAttribute()
+    {
+        $banners = [];
+        if ($this->images->count() > 0) {
+            foreach ($this->images as $key => $item) {
+                array_push($banners, Storage::url($item->path));
+            }
+        }
+        return $banners;
     }
 }

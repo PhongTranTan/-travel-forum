@@ -89,92 +89,147 @@ Post
                                         <label for="lat">Lat</label>
                                         <input class="form-control" type="text" id="lat" name="lat"
                                             value="{{ !empty($data) ? $data->lat : "" }}">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="lng">Lng</label>
-                                        <input class="form-control" type="text" id="lng" name="lng"
-                                            value="{{ !empty($data) ? $data->lng : "" }}">
-                                    </div>
-                                </div>
-                            </div> --}}
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="description">Description</label>
-                                        <textarea class="form-control" name="description" id="description" cols="30" rows="10">{{ !empty($data) ? $data->description : "" }}</textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="iframe">Iframe</label>
-                                        <textarea class="form-control" name="iframe" id="iframe" cols="30" rows="10">{{ !empty($data) ? $data->iframe : "" }}</textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="lat">Time Start</label>
-                                        <input class="form-control" type="time" id="time_start" name="time_start"
-                                            value="{{ !empty($data) ? $data->time_start : "00:00:00" }}">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="time_end">Time End</label>
-                                        <input class="form-control" type="time" id="time_end" name="time_end"
-                                            value="{{ !empty($data) ? $data->time_end : "00:00:00" }}">
-                                    </div>
-                                </div>
-                            </div>
-                           
-                            <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect switch--colored-green"
-                                for="active">
-                                <input name="active" type="checkbox" id="active" class="mdl-switch__input"
-                                    {{ !empty($data) && $data->active == 1 ? 'checked' : "" }}>
-                                <span class="mdl-switch__label">Active</span>
-                            </label>
                         </div>
                     </div>
-                    <div class="file-upload">
-                        <h5 style="color:black">Image</h5>
-                        <div class="image-upload-wrap"
-                            style="display:{{ !empty($data) && $data->image ? "none" : "block" }}">
-                            <input name="image" class="file-upload-input" type='file' onchange="readURL(this);"
-                                accept="image/*" />
-                            <div class="drag-text">
-                                <h3>Drag and drop a file or select add Image</h3>
-                            </div>
-                        </div>
-                        <div class="file-upload-content"
-                            style="display:{{ !empty($data) && $data->image ? "block" : "none" }}">
-                            <img class="file-upload-image"
-                                src="{{ !empty($data) && $data->image ? Storage::url($data->image) : "" }}"
-                                alt="your image" />
-                            <div class="image-title-wrap">
-                                <button type="button" onclick="removeUpload()" class="remove-image">
-                                    Remove
-                                    <span class="image-title">Uploaded Image</span>
-                                </button>
-                            </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="lng">Lng</label>
+                            <input class="form-control" type="text" id="lng" name="lng"
+                                value="{{ !empty($data) ? $data->lng : "" }}">
                         </div>
                     </div>
-                    <a href="{{ route('admin.post.index') }}"
-                        class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-red">
-                        Back
-                    </a>
-                    <button style="float: right" type="submit"
-                        class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green">
-                        Save
-                    </button>
-                </form>
+            </div> --}}
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea class="form-control" name="description" id="description" cols="30"
+                            rows="10">{{ !empty($data) ? $data->description : "" }}</textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="iframe">Iframe</label>
+                        <textarea class="form-control" name="iframe" id="iframe" cols="30"
+                            rows="10">{{ !empty($data) ? $data->iframe : "" }}</textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="lat">Time Start</label>
+                        <input class="form-control" type="time" id="time_start" name="time_start"
+                            value="{{ !empty($data) ? $data->time_start : "00:00:00" }}">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="time_end">Time End</label>
+                        <input class="form-control" type="time" id="time_end" name="time_end"
+                            value="{{ !empty($data) ? $data->time_end : "00:00:00" }}">
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <h5>Banners current</h5>
+            <div class="row">
+                @if($data->banners_admin)
+                @foreach ($data->banners_admin as  $keyb => $banner)
+                {{-- <figure class="figure">
+                    <img width="60" height="60" src="{{ $banner }}" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+                    <figcaption class="figure-caption"></figcaption>
+                </figure> --}}
+                <div class="col-md-3">
+                    <div class="card" style="width: 18rem; height: 18rem;">
+                        <img class="card-img-top" src="{{ $banner }}" alt="Card image cap">
+                        <div class="card-body">
+                            <p class="card-text">Banner item {{ $keyb + 1  }}</p>
+                        </div>
+                    </div>
+                    <p></p>
+                </div>
+                @endforeach
+                @else
+                <h5>Not list banners</h5>
+                @endif
+            </div>
+            <h5>Change list Banners</h5>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="image1">Banner Item 1</label>
+                        <input name="images[]" type="file" class="form-control-file" id="image1">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="image2">Banner Item 2</label>
+                        <input name="images[]" type="file" class="form-control-file" id="image2">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="image3">Banner Item 3</label>
+                        <input name="images[]" type="file" class="form-control-file" id="image3">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="image4">Banner Item 4</label>
+                        <input name="images[]" type="file" class="form-control-file" id="image4">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="image5">Banner Item 5</label>
+                        <input name="images[]" type="file" class="form-control-file" id="image5">
+                    </div>
+                </div>
+            </div>
+            <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect switch--colored-green" for="active">
+                <input name="active" type="checkbox" id="active" class="mdl-switch__input"
+                    {{ !empty($data) && $data->active == 1 ? 'checked' : "" }}>
+                <span class="mdl-switch__label">Active</span>
+            </label>
+        </div>
+    </div><br>
+    <hr>
+    <div class="file-upload">
+        <h5 style="color:black">Image Default</h5>
+        <div class="image-upload-wrap" style="display:{{ !empty($data) && $data->image ? "none" : "block" }}">
+            <input name="image" class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*" />
+            <div class="drag-text">
+                <h3>Drag and drop a file or select add Image</h3>
+            </div>
+        </div>
+        <div class="file-upload-content" style="display:{{ !empty($data) && $data->image ? "block" : "none" }}">
+            <img class="file-upload-image" src="{{ !empty($data) && $data->image ? Storage::url($data->image) : "" }}"
+                alt="your image" />
+            <div class="image-title-wrap">
+                <button type="button" onclick="removeUpload()" class="remove-image">
+                    Remove
+                    <span class="image-title">Uploaded Image</span>
+                </button>
             </div>
         </div>
     </div>
+
+
+    <a href="{{ route('admin.post.index') }}"
+        class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-red">
+        Back
+    </a>
+    <button style="float: right" type="submit"
+        class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-green">
+        Save
+    </button>
+    </form>
+</div>
+</div>
+</div>
 </div>
 @endsection
 @push('scripts')

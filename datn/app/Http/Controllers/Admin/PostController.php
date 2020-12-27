@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
+use App\Models\PostImage;
 use App\Models\Category;
 
 class PostController extends Controller
@@ -33,6 +34,15 @@ class PostController extends Controller
         $input = $rq->all();
         $input = $this->parseInput($input, $rq);
         $checkCreate = Post::create($input);
+        if (isset($input['images'])) {
+            $checkCreate->images()->saveMany(array_map(function ($item) use ($checkCreate) {
+                $arr = [
+                    'post_id' => $checkCreate->id,
+                    'path' => $item
+                ];
+                return new PostImage($arr);
+            }, $input['images']));
+        }
         if (!$checkCreate) {
             session()->flash('error', 'Create Fail !');
         }
@@ -56,6 +66,16 @@ class PostController extends Controller
         $input = $rq->all();
         $input = $this->parseInput($input, $rq);
         $checkUpdate = $data->update($input);
+        if (isset($input['images'])) {
+            $data->images()->delete();
+            $data->images()->saveMany(array_map(function ($item) use ($data) {
+                $arr = [
+                    'post_id' => $data->id,
+                    'path' => $item
+                ];
+                return new PostImage($arr);
+            }, $input['images']));
+        }
         if (!$checkUpdate) {
             session()->flash('error', 'Update Fail !');
         }
@@ -89,6 +109,20 @@ class PostController extends Controller
             $input['active'] = 0;
         } else {
             $input['active'] = 1;
+        }
+        if(isset($input['images'])) {
+            $paths = [];
+            $images = $input['images'];
+            foreach ($images as $key  => $image) {
+                $type = $image->extension();
+                $timeNow = strtotime("now");
+                $folder = "public/images/banners/";
+                $nameFile = "image_{$key}_{$timeNow}.{$type}";
+                Storage::putFileAs("{$folder}", $image, $nameFile);
+                $path = "/images/banners/$nameFile";
+                array_push($paths, $path);
+            }
+            $input['images'] = $paths;
         }
         return $input;
     }
